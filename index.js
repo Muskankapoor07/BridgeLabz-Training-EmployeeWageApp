@@ -4,6 +4,7 @@ const IS_PRESENT = 1;
 const PART_TIME = 1;
 const FULL_TIME = 2;
 const WAGE_PER_HOUR = 20;
+const NUM_OF_WORKING_DAYS = 20;
 
 function getWorkHours() {
     let empCheck = Math.floor(Math.random() * 3);
@@ -20,27 +21,29 @@ function getWorkHours() {
     }
 }
 
-function calculateDailyWage() {
+function calculateMonthlyWage() {
+    let totalEmpHours = 0;
 
-    let employeeCheck = Math.floor(Math.random() * 2);
+    for (let day = 1; day <= NUM_OF_WORKING_DAYS; day++) {
 
-    if (employeeCheck == IS_PRESENT) {
+        let employeeCheck = Math.floor(Math.random() * 2);
 
-        console.log("Employee is Present");
+        if (employeeCheck == IS_PRESENT) {
+            console.log("Day " + day + ": Employee Present");
 
-        let empHours = getWorkHours();
-        let empWage = empHours * WAGE_PER_HOUR;
+            let empHours = getWorkHours();
+            totalEmpHours += empHours;
 
-        console.log("Employee Hours = " + empHours);
-        console.log("Daily Employee Wage = $" + empWage);
-
-    } else {
-
-        console.log("Employee is Absent");
-        console.log("Employee Hours = 0");
-        console.log("Daily Employee Wage = $0");
+        } else {
+            console.log("Day " + day + ": Employee Absent");
+        }
     }
+
+    let totalEmpWage = totalEmpHours * WAGE_PER_HOUR;
+
+    console.log("--------------------------------");
+    console.log("Total Working Hours = " + totalEmpHours);
+    console.log("Monthly Employee Wage = $" + totalEmpWage);
 }
 
-
-calculateDailyWage();
+calculateMonthlyWage();
