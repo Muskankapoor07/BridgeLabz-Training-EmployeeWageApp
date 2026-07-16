@@ -1,0 +1,1 @@
+console.log("EmployeeWage Project started");
